@@ -1,37 +1,35 @@
-## Welcome to GitHub Pages
+## githubでVScodeをつかう
+### ブラウザで、どこからでも、マルチプラットフォームで、turtleをやりたい
+githubのあるリポジトリに入り、code>code>create codespace on mainを選ぶ。ほどなくして、メールで利用可能とくる。そうすると、visualstudio codeが使えるようになる。
+ここで、jupyter notebook を起動し、turtleの特殊バージョン[mobilechelonian](https://github.com/takluyver/mobilechelonian/blob/master/README.rst)を動かせるようになるまでの手順
 
-You can use the [editor on GitHub](https://github.com/RyotaroIchihara/RyotaroIchihara.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+1. [こちら](https://atmarkit.itmedia.co.jp/ait/articles/2108/06/news030.html)の手順に従い、jupyterとenvを入れる
+2. 以下のコードを、上で作成したenvフォルダに移動して、ターミナルを起動して、以下のコードを打つ
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+> conda env list
+> conda create -n turtle python=3.6（3.10.4　自分がやった時）
+> conda activate turtle
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RyotaroIchihara/RyotaroIchihara.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+3. ここで、アクティベートするにはinitファイルがどうのこうのと出るので適当な名前でinitファイルを作って、ターミナルをいったん終了。またターミナルを立ち上げて、先ほどの仮想ディレクトリへ移動。次に以下を打つ
+> conda activate turtle
+> pip install mobilechelonian
+> juypter notebook
+5. するとしばらくすると以下の文字列が吐き出されるので、ブラウザで新しく開くjupyter notebookのtokenを入れろというフィールドに、token=で示された文字列を入れる。
+> copy and paste one of these URLs:
+>         http://localhost:8888/? token=482238d55a25c3c0268af7da04b579091b79a5f386ee949d
+6. 無事にjupyter notebookが動き出した。
+7. 右のほうにあるNewのNotebook: Python3(ipykernel)を選ぶとコードをいじれるウィンドウが立ち上がる（ブラウザの別タブ）
+8. ここに、以下のコードを張り付けて、ctrl+enterでついにできる。
+> from mobilechelonian import Turtle
+> t = Turtle()
+> t.speed(5)
+> colours=["red","blue","yellow","brown","black","purple","green"]
+> 
+> t.penup(); t.left(90); t.forward(200);t.right(90);t.pendown()
+> for i in range (0,18):
+>     t.pencolor(colours[i%7])
+>     t.right(20)
+>     t.forward(50)
+> 
+> t.right(180)
+> t.home()
